@@ -2,12 +2,10 @@ from setuptools import setup, find_packages
 
 
 def readme() -> str:
-    with open(r"README.txt") as f:
+    with open(r"README.md") as f:
         README = f.read()
     return README
 
-
-    
 
 classifiers = [
     'Development Status :: 5 - Production/Stable',
@@ -19,16 +17,16 @@ classifiers = [
 
 setup(
     name='pywhatsbomb',
-    version='2.1.1.5',
-    description='It is a power full tool for whatsapp prank',
+    version='1.0',
+    description='A powerful tool for WhatsApp prank',
     long_description=readme(),
     long_description_content_type="text/markdown",
-    url='',
-    author='Ragu G ',
+    url='https://github.com/Raguggg/pywhatsbomb',
+    author='Ragu G',
     author_email='ragu19062002@gmail.com',
     license='MIT',
     classifiers=classifiers,
-    keywords='whatsapp,whatsappauto,auto,whatsappbot,bot,whatsapp tool',
+    keywords='whatsapp, prank, bot, automation, spamming, mass messaging, flooding, joke',
     packages=find_packages(),
     install_requires=['PyAutoGUI']
 )
