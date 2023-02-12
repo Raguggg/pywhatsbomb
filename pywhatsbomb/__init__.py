@@ -5,7 +5,6 @@ import pyautogui as pg
 import webbrowser as ww
 import time as t
 
-
 # variable declaration
 number = ""
 txt = ""
@@ -87,20 +86,13 @@ a_name = ['Canidae','Felidae', 'Cat', 'Cattle', 'Dog', 'Donkey', 'Goat',
    'Guppy', 'Horse', 'Koi', 'Llama', 'Ringneck dove', 'Sheep', 'Siamese fighting fish',
    'Society finch', 'Yak', 'Water buffalo'] 
 bk = 0
-def web_ctrl(number):
+def web_ctrl(number,text_message):
     # pg.alert(title="Don't do any action until message send successfully")
-    ww.open(f"https://web.whatsapp.com/send?phone={number}&text=")
+    ww.open(f"https://web.whatsapp.com/send?phone={number}&text={text_message}")
     t.sleep(20)
     pg.press('f11')
     t.sleep(5)
-    x, y = pg.size()
-    pg.click((x / 2)+100, y-35)
-    pg.hotkey('ctrl', 'alt', 'n')
-    t.sleep(1)
-    pg.hotkey('ctrl','a')
-    t.sleep(1)
-    pg.press('backspace')
-    t.sleep(1)
+    pg.press('enter')
     pass
 
 def message_start(txt, loop):
@@ -123,30 +115,13 @@ def animal_message(txt, loop):
 def bomb(cmd):
     global abc
     while cmd == 'start':
+        img_array = ['background.png','critiser.png','message-bomber.png','start.png','whatsapp.ico']
         try:
-            open("background.png")
-            open('critiser.png')
-            open('message-bomber.png')
-            open('start.png')
-            open('whatsapp.ico')
+            for i in img_array:open(i)
         except FileNotFoundError:
             print("Welcome to whatsbombapp")
             print("Due to first time, getting required files. It takes few seconds")
-            img1 = 'background.png'
-            url1 = 'https://telegra.ph/file/87431260eae6f05cedb74.png'
-            urllib.request.urlretrieve(url1, img1)
-            img2 = 'critiser.png'
-            url2 = 'https://telegra.ph/file/4bb22ecde1de5781d88bc.png'
-            urllib.request.urlretrieve(url2, img2)
-            img3 = 'message-bomber.png'
-            url3 = 'https://telegra.ph/file/526c3c99f72f2b2c07eca.png'
-            urllib.request.urlretrieve(url3, img3)
-            img4 = 'start.png'
-            url4 = 'https://telegra.ph/file/b3409e0820080443fa624.png'
-            urllib.request.urlretrieve(url4, img4)
-            img5 = 'whatsapp.ico'
-            url5 = 'https://icon-icons.com/downloadimage.php?id=37229&root=373/ICO/256/&file=Whatsapp_37229.ico'
-            urllib.request.urlretrieve(url5, img5)
+            for i in  img_array:urllib.request.urlretrieve('https://raw.githubusercontent.com/Raguggg/pywhatsbomb_img/main/'+i,i)
             print("...............Hello User.................")
         if abc == 1:
             break
@@ -166,8 +141,8 @@ def bomb(cmd):
                     messagebox.showinfo("Alert", 'The message will send in 30 seconds.'
                                                  '\nDon\'t do any action until message send')
                     win.destroy()
-                    web_ctrl(number)
-                    message_start(txt, loop)
+                    web_ctrl(number,txt)
+                    message_start(txt, loop-1)
                     pass
 
             else:
@@ -189,8 +164,8 @@ def bomb(cmd):
                     messagebox.showinfo("Alert", 'The message will send in 30 seconds.'
                                                  '\nDon\'t do any action until message send')
                     win.destroy()
-                    web_ctrl(number)
-                    animal_message(txt, loop)
+                    web_ctrl(number,f'{txt} is a Sheep')
+                    animal_message(txt, loop-1)
                     pass
 
             else:
@@ -204,7 +179,7 @@ def bomb(cmd):
         win.title("Whatsapp bomber .......")
         win.iconbitmap("whatsapp.ico")
         win.resizable(height="false", width="false")
-        bg = PhotoImage(file='background.png')
+        bg = PhotoImage(file='./background.png')
         message_bomb = PhotoImage(file='message-bomber.png')
         critiser = PhotoImage(file='critiser.png')
         start = PhotoImage(file='start.png')
@@ -324,9 +299,6 @@ def bomb(cmd):
     else:
         print('.......invalid......')
 
-
-
-bomb('start')
-
-
+if __name__ == "__main__":
+    bomb('start')
 
